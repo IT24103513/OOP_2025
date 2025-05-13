@@ -1,0 +1,70 @@
+/* make navbar transparent */
+.navbar-transparent {
+  background: transparent !important;
+  transition: background 0.3s ease;
+}
+.navbar-transparent.scrolled {
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* HERO: full-screen bg + dark overlay */
+.hero {
+  height: 100vh;
+  background: url("../img/parkingNight2.jpg") center/cover no-repeat fixed;
+  position: relative;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* fade-in keyframe (for headings/buttons) */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero h1,
+.hero p,
+.hero .btn {
+  animation: fadeInUp 0.8s ease forwards;
+}
+.hero h1 { animation-delay: 0.2s; }
+.hero p  { animation-delay: 0.4s; }
+.hero .btn { animation-delay: 0.6s; }
+
+/* FEATURES SECTION */
+.features {
+  background: #f8f9fa;
+}
+.feature-card {
+  background: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* FOOTER text color */
+footer {
+  font-size: 0.9rem;
+}
+
+/* Navbar scroll behavior */
+body {
+  position: relative;
+}

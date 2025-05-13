@@ -1,0 +1,60 @@
+/* add-vehicle.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+/* Dark, neon-accent “parking lot” vibe */
+body {
+  background: #0d1117;
+  color: #c9d1d9;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+.card-slab {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 1rem;
+  box-shadow: 0 8px 14px rgba(0,0,0,.6);
+}
+
+.btn-neon {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  color: #fff;
+  border: none;
+  background: #0d6efd;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  z-index: 0;
+}
+
+.btn-neon:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #0d6efd, #8e2de2, #f093fb);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  z-index: -1;
+  animation: move 3s linear infinite;
+}
+
+@keyframes move {
+  to { background-position: 200% 0; }
+}
+
+/* Simple fade-in AOS support */
+[data-aos] {
+  opacity: 0;
+  transform: translateY(12px);
+}
+[data-aos].aos-animate {
+  opacity: 1;
+  transform: none;
+  transition: all .6s ease;
+}
