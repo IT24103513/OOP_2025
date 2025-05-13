@@ -1,3 +1,0 @@
-username,password,email,REGULAR
-Sahan,sahan123,sahan@gmail.com,REGULAR
-Pradeeptha,sahan,sahan2@gmail.com,ADMIN
