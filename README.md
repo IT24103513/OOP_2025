@@ -1,2 +1,2 @@
-# OOP_2025
-this project is created for our 1st year 2nd semester web project along with OOP concept 
+# Vehicle-Parking-System-OOP-
+Fully functional vehicle parking system developed using java with OOP concepts
