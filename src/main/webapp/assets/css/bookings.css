@@ -1,0 +1,67 @@
+/* bookings.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+/* Table styling: let the background show through */
+.table-dark {
+  background-color: transparent !important;
+}
+.table-dark thead th {
+  background-color: rgba(22,27,34,0.75) !important;
+  border-color: #30363d;
+}
+.table-striped tbody tr:nth-of-type(odd) > * {
+  background-color: rgba(22,27,34,0.5) !important;
+}
+.table-striped tbody tr:nth-of-type(even) > * {
+  background-color: rgba(22,27,34,0.3) !important;
+}
+.table-bordered {
+  border-color: #30363d;
+}
+.table-bordered th,
+.table-bordered td {
+  border-color: #30363d;
+  color: #c9d1d9;
+}
+
+/* Modal windows */
+.modal-content {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 1rem;
+  color: #c9d1d9;
+}
+
+/* Buttons */
+.btn-success {
+  background-color: #198754;
+  border-color: #198754;
+}
+.btn-warning.exit-btn {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+/* Hide/show card input */
+.d-none {
+  display: none !important;
+}
+
+/* (Optional) AOS animations */
+[data-aos] {
+  opacity: 0;
+  transform: translateY(12px);
+}
+[data-aos].aos-animate {
+  opacity: 1;
+  transform: none;
+  transition: all .6s ease;
+}
