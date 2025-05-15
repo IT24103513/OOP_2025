@@ -19,12 +19,18 @@ public class UserDAO {
     private static final Path USER_FILE = Paths.get("data", "users.txt");
 
     public void addUser(User u) throws IOException {
-        try (BufferedWriter bw = Files.newBufferedWriter(USER_FILE, StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
+        // Ensure the "data" directory exists
+        Files.createDirectories(USER_FILE.getParent());
+
+        // Create file if not exists, and append to it
+        try (BufferedWriter bw = Files.newBufferedWriter(
+                USER_FILE,
+                StandardOpenOption.CREATE,
+                StandardOpenOption.APPEND)) {
             bw.write(toCsv(u));
             bw.newLine();
         }
     }
-
     public Optional<User> findByUsername(String username) throws IOException {
         return getAll().stream()
                 .filter(u -> u.getUsername().equals(username))
