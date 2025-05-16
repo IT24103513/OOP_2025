@@ -5,6 +5,7 @@ import org.parking.models.Slots.CoveredSlot;
 import org.parking.models.Slots.OpenSlot;
 import org.parking.models.Slots.ParkingSlot;
 import org.parking.models.Slots.SlotStatus;
+import org.parking.repositories.ParkingSlotRepository;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Optional;
 
 public class ParkingSlotService {
 
-    private final ParkingSlotDAO dao = new ParkingSlotDAO();
+    private final ParkingSlotRepository dao = new ParkingSlotDAO();
 
     /* defineSlot (CREATE) */
     public boolean defineSlot(int number, String type) throws IOException {
