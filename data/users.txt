@@ -1,0 +1,4 @@
+username,password,email,REGULAR
+Pradeeptha,sahan,sahan2@gmail.com,ADMIN
+sudu,sudu,sahan@gmail.com,REGULAR
+Saman,saman,sahanpradeeptha@gmail.com,REGULAR

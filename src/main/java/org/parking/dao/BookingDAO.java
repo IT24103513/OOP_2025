@@ -4,6 +4,7 @@ import org.parking.models.Bookings.Booking;
 import org.parking.models.Bookings.BookingStatus;
 import org.parking.models.Bookings.LongTermBooking;
 import org.parking.models.Bookings.ShortTermBooking;
+import org.parking.repositories.BookingRepository;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class BookingDAO {
+public class    BookingDAO implements BookingRepository {
 
     private static final Path FILE = Paths.get("data","bookings.txt");
     public BookingDAO(){

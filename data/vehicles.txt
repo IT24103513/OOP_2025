@@ -1,0 +1,6 @@
+GV-9479,Gray,Sahan,Car
+GV-1000,Greenb,Sahan,Truck
+jhgyuygu,uyfugu,Sahan,Bike
+444,444,Saman,Car
+gv4379,blackk,sudu,Car
+4r4r4r,444,sudu putha,Car
