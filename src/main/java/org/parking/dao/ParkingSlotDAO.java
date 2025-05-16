@@ -4,6 +4,7 @@ import org.parking.models.Slots.CoveredSlot;
 import org.parking.models.Slots.OpenSlot;
 import org.parking.models.Slots.ParkingSlot;
 import org.parking.models.Slots.SlotStatus;
+import org.parking.repositories.ParkingSlotRepository;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ParkingSlotDAO {
+public class ParkingSlotDAO implements ParkingSlotRepository {
 
     private static final Path FILE = Paths.get("data","slots.txt");
 
