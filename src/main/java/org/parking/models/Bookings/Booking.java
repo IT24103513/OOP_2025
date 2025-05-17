@@ -7,7 +7,7 @@ public abstract class Booking implements Serializable {
 
     /* ENCLOSED STATE */
     private long id;            // unique
-    private String   username;      // who booked
+    private String   username;
     private String vehiclePlate;
     private int  slotNumber;
     private LocalDateTime startTime;
@@ -58,6 +58,8 @@ public abstract class Booking implements Serializable {
     public String getType(){
         return type;
     }
+
+
 
     /* --- POLYMORPHIC BEHAVIOUR --- */
     public abstract double calculateFee(double chargePerHour,

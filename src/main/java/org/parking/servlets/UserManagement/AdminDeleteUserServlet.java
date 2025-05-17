@@ -15,7 +15,8 @@ public class AdminDeleteUserServlet extends HttpServlet {
     private final AdminService svc=new AdminService();
     @Override protected void doPost(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
-        svc.deleteAdmin(req.getParameter("username"));    // works for any user
-        res.sendRedirect("../users?msg=del");
+        String username = req.getParameter("username");
+        svc.deleteUser(username);               // deletes any User by name
+        res.sendRedirect(req.getContextPath() + "/admin/users");
     }
 }
