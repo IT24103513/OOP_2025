@@ -23,6 +23,6 @@ public class DeleteUserServlet extends HttpServlet {
         String username = ((org.parking.models.User) session.getAttribute("user")).getUsername();
         service.delete(username);
         session.invalidate();
-        resp.sendRedirect("login.jsp?msg=deleted");
+        resp.sendRedirect("/login.jsp?msg=deleted");
     }
 }
