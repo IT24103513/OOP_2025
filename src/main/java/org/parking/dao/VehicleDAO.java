@@ -4,6 +4,7 @@ import org.parking.models.Vehicles.Bike;
 import org.parking.models.Vehicles.Car;
 import org.parking.models.Vehicles.Truck;
 import org.parking.models.Vehicles.Vehicle;
+import org.parking.repositories.VehicleRepository;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class VehicleDAO {
+public class VehicleDAO implements VehicleRepository {
 
     private static final Path VEH_FILE = Paths.get("data","vehicles.txt");
 
