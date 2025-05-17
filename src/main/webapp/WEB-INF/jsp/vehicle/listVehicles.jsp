@@ -1,69 +1,49 @@
 <%@ page contentType="text/html;charset=UTF-8" session="true" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%
+    // optional: pull user from session (navbar.jsp also does this)
     org.parking.models.User user =
         (org.parking.models.User) session.getAttribute("user");
 %>
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>My Vehicles</title>
 
-  <!-- 1) Bootstrap FIRST -->
+  <!-- 1) Bootstrap CSS -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet"
   >
 
-  <!-- 2) header overrides -->
+  <!-- 2) Your header overrides -->
   <link
     href="${pageContext.request.contextPath}/assets/css/header.css?v=1"
     rel="stylesheet"
   >
 
-  <!-- 3) blurred-bg + frosted-glass + slide-up -->
+  <!-- 3) Vehicles page CSS (contains the new blur + glass + slide-up + neon styles) -->
   <link
-    href="${pageContext.request.contextPath}/assets/css/dashboard.css?v=1"
+    href="${pageContext.request.contextPath}/assets/css/vehicles.css?v=2"
     rel="stylesheet"
   >
+
 </head>
 <body>
 
-  <!-- full-screen blurred bg -->
+  <!-- full-screen blurred background -->
   <div class="bg-blur"></div>
 
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg mb-4">
-    <div class="container-fluid">
-      <span class="navbar-brand brand text-white">Parking System</span>
-      <div class="dropdown ms-auto">
-        <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-           href="#" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
-          <span class="rounded-circle bg-primary d-inline-block text-center fw-bold me-2"
-                style="width:36px;height:36px;line-height:36px;">
-            <%= user.getUsername().substring(0,1).toUpperCase() %>
-          </span>
-          <span class="d-none d-lg-inline">
-            Welcome <strong><%= user.getUsername() %></strong>
-          </span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="userMenu">
-          <li><a class="dropdown-item" href="profile">Profile</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li>
-            <form action="<c:url value='/logout'/>" method="post" class="m-0">
-              <button class="dropdown-item">Logout</button>
-            </form>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <!-- NAVBAR (reads session user internally) -->
+  <%@ include file="/WEB-INF/navbar.jsp" %>
 
-  <!-- CONTENT -->
-  <div class="container">
-
-    <div class="card-slab p-4 slide-up" style="--delay: 0.1s">
+  <!-- MAIN CONTENT -->
+  <div class="container py-5">
+    <div
+      class="card-slab p-4"
+      style="--delay: 0.1s"
+    >
       <h4 class="text-white mb-3">My Vehicles</h4>
 
       <c:choose>
@@ -119,13 +99,15 @@
 
       <a
         href="${pageContext.request.contextPath}/vehicle/add"
-        class="btn btn-neon mt-3 slide-up"
+        class="btn btn-neon mt-4"
         style="--delay: 0.2s"
-      >Add another vehicle</a>
+      >
+        Add another vehicle
+      </a>
     </div>
+  </div>
 
-  </div><!-- /container -->
-
+  <!-- Bootstrap JS bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
