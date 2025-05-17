@@ -35,34 +35,7 @@
   <div class="bg-blur"></div>
 
   <!-- NAV ------------------------------------------------------------------->
-  <nav class="navbar navbar-expand-lg mb-4">
-    <div class="container-fluid">
-      <span class="navbar-brand brand fw-bold text-white">Parking&nbsp;System</span>
-
-      <div class="dropdown ms-auto">
-        <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-           href="#" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
-
-          <span class="rounded-circle bg-primary d-inline-block text-center fw-bold me-2 profile-placeholder">
-            <%= user.getUsername().substring(0,1).toUpperCase() %>
-          </span>
-          <span class="d-none d-lg-inline">
-            Welcome&nbsp;<strong><%= user.getUsername() %></strong>
-          </span>
-        </a>
-
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="userMenu">
-          <li><a class="dropdown-item" href="profile">Profile</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li>
-            <form action="<c:url value='/logout' />" method="post" class="m-0">
-              <button class="dropdown-item">Logout</button>
-            </form>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <%@ include file="/WEB-INF/navbar.jsp" %>
 
   <div class="container">
     <div class="row">

@@ -11,7 +11,7 @@
 <body>
 
 <div class="card-glass p-4">
-    <h3 class="brand text-center mb-4">Parking System</h3>
+    <h3 class="brand text-center mb-4">ParkMe</h3>
     <h5 class="text-center mb-3 text-white">Create an account</h5>
 
     <!-- Alerts ----------------------------------------------------------->

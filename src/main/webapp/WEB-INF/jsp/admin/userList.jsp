@@ -89,32 +89,8 @@
   <div class="bg-blur"></div>
 
   <!-- NAVBAR (same as before) -->
-  <nav class="navbar navbar-expand-lg mb-4">
-    <div class="container-fluid">
-      <span class="navbar-brand brand text-white">Parking System</span>
-      <div class="dropdown ms-auto">
-        <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-           href="#" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
-          <span class="rounded-circle bg-primary d-inline-block text-center fw-bold me-2"
-                style="width:36px;height:36px;line-height:36px;">
-            <%= user.getUsername().substring(0,1).toUpperCase() %>
-          </span>
-          <span class="d-none d-lg-inline">
-            Welcome <strong><%= user.getUsername() %></strong>
-          </span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="userMenu">
-          <li><a class="dropdown-item" href="profile">Profile</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li>
-            <form action="<c:url value='/logout'/>" method="post" class="m-0">
-              <button class="dropdown-item">Logout</button>
-            </form>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    <!-- NAVBAR -->
+    <%@ include file="/WEB-INF/navbar.jsp" %>
 
   <!-- CONTENT -->
   <div class="container">
@@ -158,18 +134,12 @@
                   >Change Role</button>
 
                   <!-- Delete user -->
-                  <form action="user/delete" method="post" class="d-inline ms-1"
-                        onsubmit="return confirm('Delete user?')">
-                    <input type="hidden" name="username" value="${u.username}" />
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-danger btn-delete-user"
-                      data-username="${u.username}"
-                      data-bs-toggle="modal"
-                      data-bs-target="#deleteUserModal"
-                    >🗑</button>
-
-                  </form>
+                  <button type="button" class="btn btn-sm btn-danger btn-delete-user ms-1"
+                                          data-username="${u.username}"
+                                          data-bs-toggle="modal"
+                                          data-bs-target="#deleteUserModal">
+                                    🗑
+                                  </button>
                 </td>
               </tr>
             </c:forEach>
@@ -182,59 +152,63 @@
 
   <!-- Change Role Modal -->
   <div class="modal fade" id="roleModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <form action="user/changeRole" method="post" class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="roleModalLabel">Change User Role</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <input type="hidden" name="username" id="role-username" />
-          <p>Current role: <strong id="current-role"></strong></p>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="newRole"
-              id="roleAdmin"
-              value="AdminUser"
-              required
-            >
-            <label class="form-check-label text-white" for="roleAdmin">
-              Admin
-            </label>
+      <div class="modal-dialog">
+        <form action="${pageContext.request.contextPath}/user/changeRole" method="post" class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="roleModalLabel">Change User Role</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="newRole"
-              id="roleVisitor"
-              value="VisitorUser"
-            >
-            <label class="form-check-label text-white" for="roleVisitor">
-              Visitor
-            </label>
+          <div class="modal-body">
+            <!-- hidden to carry the username -->
+            <input type="hidden" name="username" id="role-username" />
+
+            <p>Current role: <strong id="current-role"></strong></p>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="newRole"
+                id="roleAdmin"
+                value="AdminUser"
+                required
+              >
+              <label class="form-check-label text-white" for="roleAdmin">
+                Admin
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="newRole"
+                id="roleRegular"
+                value="RegularUser"
+              >
+              <label class="form-check-label text-white" for="roleRegular">
+                Regular
+              </label>
+            </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >Cancel</button>
-          <button type="submit" class="btn btn-primary">Change Role</button>
-        </div>
-      </form>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >Cancel</button>
+            <button type="submit" class="btn btn-primary">Change Role</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
 
 
 
   <!-- Delete Confirmation Modal -->
   <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <form id="deleteUserForm" method="post" action="user/delete" class="modal-content">
+      <form id="deleteUserForm" method="post" action="<c:url value='/admin/user/delete'/>" class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title text-white" id="deleteUserLabel">Confirm Delete</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -258,16 +232,42 @@
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
   ></script>
   <script>
-    document.querySelectorAll('.btn-change-role').forEach(btn => {
-      btn.addEventListener('click', () => {
-        // populate modal fields
-        document.getElementById('role-username').value = btn.dataset.username;
-        document.getElementById('current-role').textContent = btn.dataset.role;
-        // pre-check the opposite role
-        document.getElementById('roleAdmin').checked = btn.dataset.role !== 'AdminUser';
-        document.getElementById('roleVisitor').checked = btn.dataset.role === 'AdminUser';
-      });
+
+
+
+        // Populate Delete Confirmation Modal
+            document.querySelectorAll('.btn-delete-user').forEach(btn => {
+              btn.addEventListener('click', () => {
+                const username = btn.dataset.username;
+                document.getElementById('delete-username').textContent = username;
+                document.getElementById('delete-user-input').value   = username;
+              });
+            });
+
+
+  </script>
+
+  <script>
+    // Bootstrap 5: listen for the modal 'show' event
+    var roleModal = document.getElementById('roleModal');
+    roleModal.addEventListener('show.bs.modal', function (event) {
+      // The button that triggered the modal
+      var btn  = event.relatedTarget;
+      var user = btn.getAttribute('data-username');
+      var role = btn.getAttribute('data-role');
+
+      // Populate hidden input & display current role
+      this.querySelector('#role-username').value   = user;
+      this.querySelector('#current-role').textContent =
+        (role === 'AdminUser' ? 'Admin' : 'Regular');
+
+      // (Optional) Pre-select the existing role radio
+      this.querySelector('#roleAdmin').checked   = (role === 'AdminUser');
+      this.querySelector('#roleRegular').checked = (role === 'RegularUser');
     });
   </script>
+
+
+
 </body>
 </html>

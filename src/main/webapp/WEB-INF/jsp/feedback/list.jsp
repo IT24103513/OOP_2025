@@ -24,7 +24,7 @@
 
   <!-- 3) Blurred-bg + frosted-glass + slide-up -->
   <link
-    href="${pageContext.request.contextPath}/assets/css/dashboard.css?v=1"
+    href="${pageContext.request.contextPath}/assets/css/feedback.css?v=1"
     rel="stylesheet"
   >
 </head>
@@ -34,32 +34,7 @@
   <div class="bg-blur"></div>
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg mb-4">
-    <div class="container-fluid">
-      <span class="navbar-brand brand text-white">Parking System</span>
-      <div class="dropdown ms-auto">
-        <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-           href="#" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
-          <span class="rounded-circle bg-primary d-inline-block text-center fw-bold me-2"
-                style="width:36px;height:36px;line-height:36px;">
-            <%= user.getUsername().substring(0,1).toUpperCase() %>
-          </span>
-          <span class="d-none d-lg-inline">
-            Welcome <strong><%= user.getUsername() %></strong>
-          </span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="userMenu">
-          <li><a class="dropdown-item" href="profile">Profile</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li>
-            <form action="<c:url value='/logout'/>" method="post" class="m-0">
-              <button class="dropdown-item">Logout</button>
-            </form>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <%@ include file="/WEB-INF/navbar.jsp" %>
 
   <!-- CONTENT -->
   <div class="container">
@@ -94,6 +69,21 @@
                 <td>${f.status}</td>
                 <td>${f.createdAt}</td>
                 <td>
+
+                <button
+                                    type="button"
+                                    class="btn btn-sm btn-info btn-view"
+                                    data-id="${f.id}"
+                                    data-subject="${f.subject}"
+                                    data-content="${f.content}"
+                                    data-status="${f.status}"
+                                    data-created="${f.createdAt}"
+                                    data-updated="${f.lastUpdated}"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#viewFeedbackModal"
+                                  >View</button>
+
+
                   <button
                     type="button"
                     class="btn btn-sm btn-primary btn-edit"
@@ -131,6 +121,34 @@
     </c:if>
 
   </div><!-- /container -->
+
+  <!-- NEW View Feedback Modal -->
+    <div class="modal fade" id="viewFeedbackModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">View Feedback</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>ID:</strong> <span id="view-id"></span></p>
+            <p><strong>Subject:</strong> <span id="view-subject"></span></p>
+            <p><strong>Content:</strong></p>
+            <p id="view-content"></p>
+            <p><strong>Status:</strong> <span id="view-status"></span></p>
+            <p><strong>Created At:</strong> <span id="view-created"></span></p>
+            <c:if test="${sessionScope.user.admin}">
+              <p><strong>Last Updated:</strong> <span id="view-updated"></span></p>
+            </c:if>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   <!-- Modals -->
   <div class="modal fade" id="addFeedbackModal" tabindex="-1" aria-hidden="true">
@@ -243,6 +261,8 @@
     </div>
   </div>
 
+
+
   <!-- Bootstrap JS + edit-handler -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -259,5 +279,22 @@
       });
     });
   </script>
+
+  <!-- NEW script to populate View Modal -->
+    <script>
+      document.querySelectorAll('.btn-view').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.getElementById('view-id').textContent      = btn.dataset.id;
+          document.getElementById('view-subject').textContent = btn.dataset.subject;
+          document.getElementById('view-content').textContent = btn.dataset.content;
+          document.getElementById('view-status').textContent  = btn.dataset.status;
+          document.getElementById('view-created').textContent = btn.dataset.created;
+          const upd = document.getElementById('view-updated');
+          if (upd) upd.textContent = btn.dataset.updated;
+        });
+      });
+    </script>
+
+
 </body>
 </html>

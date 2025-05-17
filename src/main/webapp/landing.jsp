@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ParkMee | Home</title>
+  <title>ParkMe | Home</title>
 
   <!-- Bootstrap 5 -->
   <link
@@ -35,7 +35,7 @@
   <nav class="navbar navbar-expand-lg navbar-light navbar-transparent fixed-top">
     <div class="container">
       <a class="navbar-brand text-white fs-3 fw-bold" href="#">
-        🅿️ ParkMee
+        🅿️ ParkMe
       </a>
       <button
         class="navbar-toggler"
@@ -45,28 +45,14 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link text-white" href="login.jsp">Login</a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link btn btn-light btn-sm px-4 ms-2"
-              href="register.jsp"
-            >
-              Register
-            </a>
-          </li>
-        </ul>
-      </div>
+
     </div>
   </nav>
 
   <!-- HERO SECTION -->
   <section class="hero d-flex align-items-center justify-content-center text-center">
     <div class="container text-white" data-aos="fade-up">
-      <h1 class="display-3 fw-bold">Welcome to ParkMee</h1>
+      <h1 class="display-3 fw-bold">Welcome to ParkMe</h1>
       <p class="lead mb-4">
         Your smart, secure, real-time parking management solution.
       </p>
