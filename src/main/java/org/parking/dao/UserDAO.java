@@ -3,6 +3,7 @@ package org.parking.dao;
 import org.parking.models.AdminUser;
 import org.parking.models.RegularUser;
 import org.parking.models.User;
+import org.parking.repositories.UserRepository;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -14,23 +15,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class UserDAO {
+public class UserDAO implements UserRepository {
 
     private static final Path USER_FILE = Paths.get("data", "users.txt");
 
     public void addUser(User u) throws IOException {
-        // Ensure the "data" directory exists
-        Files.createDirectories(USER_FILE.getParent());
-
-        // Create file if not exists, and append to it
-        try (BufferedWriter bw = Files.newBufferedWriter(
-                USER_FILE,
-                StandardOpenOption.CREATE,
-                StandardOpenOption.APPEND)) {
+        try (BufferedWriter bw = Files.newBufferedWriter(USER_FILE, StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
             bw.write(toCsv(u));
             bw.newLine();
         }
     }
+
     public Optional<User> findByUsername(String username) throws IOException {
         return getAll().stream()
                 .filter(u -> u.getUsername().equals(username))
@@ -75,7 +70,7 @@ public class UserDAO {
 
     /* --------------- Helpers --------------- */
 
-    private void overwrite(List<User> users) throws IOException {
+    public void overwrite(List<User> users) throws IOException {
         try (BufferedWriter bw = Files.newBufferedWriter(USER_FILE, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
             for (User u : users) {
                 bw.write(toCsv(u));
