@@ -5,6 +5,7 @@ import org.parking.models.Vehicles.Bike;
 import org.parking.models.Vehicles.Car;
 import org.parking.models.Vehicles.Truck;
 import org.parking.models.Vehicles.Vehicle;
+import org.parking.repositories.VehicleRepository;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,7 +13,9 @@ import java.util.Optional;
 
 public class VehicleService {
 
-    private final VehicleDAO dao = new VehicleDAO();
+    //private final VehicleDAO dao = new VehicleDAO();
+
+    private final VehicleRepository dao =  new VehicleDAO();
 
     /* factory encapsulates polymorphic creation */
     public boolean add(String plate,String color,String type,String owner) throws IOException{
