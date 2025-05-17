@@ -4,6 +4,7 @@ import org.parking.dao.UserDAO;
 import org.parking.models.AdminUser;
 import org.parking.models.RegularUser;
 import org.parking.models.User;
+import org.parking.repositories.UserRepository;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -11,7 +12,9 @@ import java.util.Optional;
 public class UserService {
 
 
-    private final UserDAO dao = new UserDAO();
+    //private final UserDAO dao = new UserDAO();
+
+    private final UserRepository dao = new UserDAO();
 
     public boolean register(String username, String password, String email, boolean admin) throws IOException {
         if (dao.findByUsername(username).isPresent()) return false;   // duplicate
