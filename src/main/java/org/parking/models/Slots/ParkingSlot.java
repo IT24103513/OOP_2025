@@ -38,7 +38,5 @@ public abstract class ParkingSlot implements Serializable {
     /* POLYMORPHIC – each subclass prices differently */
     public abstract double getChargePerHour();
 
-    @Override public String toString() {
-        return "#%d [%s] – %s".formatted(number, type, status);
-    }
+    
 }
