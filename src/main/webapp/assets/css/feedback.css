@@ -1,0 +1,67 @@
+/* feedback.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+/* Dark, neon-accent “parking lot” vibe */
+body {
+  background: #0d1117;
+  color: #c9d1d9;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+/* Page title */
+h3 {
+  color: #c9d1d9;
+}
+
+/* Tables */
+.table-bordered {
+  border-color: #30363d;
+}
+.table-bordered th,
+.table-bordered td {
+  background-color: #161b22;
+  border-color: #30363d;
+  color: #c9d1d9;
+}
+
+/* Modal windows */
+.modal-content {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 1rem;
+  color: #c9d1d9;
+}
+
+/* Buttons */
+.btn-success {
+  background-color: #198754;
+  border-color: #198754;
+}
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+.btn-close {
+  filter: invert(1);
+}
+
+/* Form labels */
+.form-label {
+  color: #c9d1d9;
+}
+
+/* Optional fade-in support for AOS */
+[data-aos] {
+  opacity: 0;
+  transform: translateY(12px);
+}
+[data-aos].aos-animate {
+  opacity: 1;
+  transform: none;
+  transition: all .6s ease;
+}
