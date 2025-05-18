@@ -4,6 +4,8 @@ import org.parking.models.Payment.CardPayment;
 import org.parking.models.Payment.CashPayment;
 import org.parking.models.Payment.Payment;
 import org.parking.models.Payment.PaymentStatus;
+import org.parking.repositories.PaymentRepository;
+
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -16,7 +18,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class PaymentDAO {
+public class PaymentDAO implements PaymentRepository {
+
 
     private static final Path FILE = Paths.get("data","payments.txt");
 

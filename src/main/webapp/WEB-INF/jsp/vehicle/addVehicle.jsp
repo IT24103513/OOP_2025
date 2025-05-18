@@ -16,6 +16,11 @@
       rel="stylesheet"
     >
   </head>
+
+    <!-- NAVBAR -->
+    <%@ include file="/WEB-INF/navbar.jsp" %>
+
+
   <body class="p-4">
     <div class="card-slab p-4 mx-auto" style="max-width:500px">
       <h4 class="text-white mb-3">Register Vehicle</h4>
