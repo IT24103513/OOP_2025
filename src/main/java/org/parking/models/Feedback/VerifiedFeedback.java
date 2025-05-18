@@ -9,6 +9,7 @@ public class VerifiedFeedback extends Feedback{
     private final String username;
 
     /** for new feedback submissions */
+
     public VerifiedFeedback(User user, String subject, String content) {
         super(subject, content);
         this.username = user.getUsername();
@@ -31,6 +32,7 @@ public class VerifiedFeedback extends Feedback{
 
     @Override
     public String displayHeader() {
+
         return username + "  —  " + getSubject();
     }
 }

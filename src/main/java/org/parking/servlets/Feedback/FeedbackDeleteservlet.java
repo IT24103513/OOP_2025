@@ -24,5 +24,6 @@ public class FeedbackDeleteservlet extends HttpServlet {
         if (!service.delete(actor, id)) { resp.sendError(403); return; }
 
         resp.sendRedirect(req.getContextPath() + "/feedback/list");
+
     }
 }

@@ -33,6 +33,7 @@
   <!-- NAVBAR -->
   <%@ include file="/WEB-INF/navbar.jsp" %>
 
+
   <!-- CONTENT -->
   <div class="container">
 

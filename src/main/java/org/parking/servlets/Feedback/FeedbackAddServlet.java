@@ -32,5 +32,6 @@ public class FeedbackAddServlet extends HttpServlet {
                 anonymous);
 
         resp.sendRedirect(req.getContextPath() + "/feedback/list");
+
     }
 }

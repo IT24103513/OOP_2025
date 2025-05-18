@@ -5,6 +5,7 @@
     org.parking.models.Bookings.BookingStatus,
     java.time.LocalDateTime"
  %>
+
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%
     org.parking.models.User user =
@@ -13,6 +14,7 @@
 
     ParkingSlotService slotSvc = new ParkingSlotService();
         LocalDateTime now = LocalDateTime.now();
+
 %>
 <!DOCTYPE html>
 <html>
@@ -20,6 +22,7 @@
     <title>Bookings</title>
 
     <!-- Bootstrap CSS -->
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet">
@@ -27,6 +30,7 @@
     <!-- Your custom CSS -->
     <link href="${pageContext.request.contextPath}/assets/css/header.css?v=1" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/assets/css/bookingsFromDashboard.css?v=1" rel="stylesheet">
+
 </head>
 <body>
 
@@ -35,6 +39,7 @@
 
   <!-- NAVBAR -->
   <%@ include file="/WEB-INF/navbar.jsp" %>
+
 
   <!-- CONTENT -->
   <div class="container">
@@ -46,6 +51,7 @@
 
     <!-- bookings table -->
     <div class="card-slab p-4 slide-up" style="--delay:0.2s">
+
       <h4 class="text-white mb-3">My Bookings</h4>
       <div class="table-responsive">
         <table class="table table-dark table-striped table-bordered mb-0">
@@ -82,6 +88,7 @@
                                 <td><%= String.format("%.2f", feeToShow) %></td>
 
 
+
                 <td>${b.status}</td>
                 <td>
                   <c:if test="${b.status=='ACTIVE'}">
@@ -102,6 +109,7 @@
     <!-- ADMIN LINK -->
     <c:if test="<%= admin %>">
       <div class="mt-5 slide-up" style="--delay:0.3s">
+
         <a href="admin/bookings" class="card-slab p-4 d-block text-decoration-none">
           <h5 class="text-warning mb-0">▶ Manage All Bookings</h5>
         </a>
@@ -121,6 +129,7 @@
         class="modal-content needs-validation"
         novalidate
       >
+
         <div class="modal-header">
           <h5 class="modal-title">Choose Payment Method</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -130,6 +139,7 @@
           <p>Amount due: Rs.<span id="modalFee"></span></p>
 
           <!-- payment mode -->
+
           <div class="mb-3">
             <select name="mode" id="paymentMode" class="form-select" required>
               <option value="">-- select --</option>
@@ -211,6 +221,7 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
             Cancel
           </button>
+
           <button type="submit" class="btn btn-primary">Proceed</button>
         </div>
       </form>

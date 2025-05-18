@@ -6,13 +6,16 @@ import org.parking.models.Feedback.VerifiedFeedback;
 import org.parking.models.User;
 import org.parking.repositories.FeedbackRepository;
 
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+
 import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +25,7 @@ public class FeedbackDAO implements FeedbackRepository {
     private static final Path FILE = Paths.get("data", "feedbacks.txt");
 
     /* ---------- CREATE ---------- */
+
     public void add(Feedback fb) throws IOException {
         try (BufferedWriter bw = Files.newBufferedWriter(FILE,
                 StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
@@ -31,6 +35,7 @@ public class FeedbackDAO implements FeedbackRepository {
     }
 
     /* ---------- READ ---------- */
+
     public List<Feedback> all() throws IOException {
         if (Files.notExists(FILE)) return new ArrayList<>();
         List<Feedback> list = new ArrayList<>();
@@ -45,18 +50,21 @@ public class FeedbackDAO implements FeedbackRepository {
     }
 
     /* ---------- UPDATE ---------- */
+
     public void update(Feedback updated) throws IOException {
         List<Feedback> list = all();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getId().equals(updated.getId())) {
                 list.set(i, updated);
                 break;
+
             }
         }
         overwrite(list);
     }
 
     /* ---------- DELETE ---------- */
+
     public void delete(String id) throws IOException {
         List<Feedback> list = all();
         list.removeIf(f -> f.getId().equals(id));
@@ -77,6 +85,7 @@ public class FeedbackDAO implements FeedbackRepository {
     private String toCsv(Feedback f) {
         String type   = (f instanceof VerifiedFeedback) ? "VERIFIED" : "ANON";
         String user   = (f instanceof VerifiedFeedback vf) ? vf.getUsername() : "";
+
         return String.join("::",
                 f.getId(),
                 type,
@@ -120,4 +129,5 @@ public class FeedbackDAO implements FeedbackRepository {
     private String unescape(String s) {
         return s.replace("\\n", "\n").replace("\\\\", "\\");
     }
+
 }

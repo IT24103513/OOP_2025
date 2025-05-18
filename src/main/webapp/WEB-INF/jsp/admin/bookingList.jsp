@@ -33,9 +33,9 @@
   <!-- full-screen blurred bg -->
   <div class="bg-blur"></div>
 
-  <!-- NAVBAR -->
    <!-- NAVBAR -->
    <%@ include file="/WEB-INF/navbar.jsp" %>
+
 
   <!-- CONTENT -->
   <div class="container">

@@ -36,11 +36,13 @@ public class FeedbackEditServlet extends HttpServlet {
                 .forward(req, resp);
     }
 
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         User actor = (User) req.getSession().getAttribute("user");
         String id = req.getParameter("id");
+
         var opt = service.listAll().stream()
                 .filter(f -> f.getId().equals(id))
                 .findFirst();
@@ -57,11 +59,13 @@ public class FeedbackEditServlet extends HttpServlet {
             fb.setStatus(Feedback.Status.valueOf(req.getParameter("status")));
         }
 
+
         if (!service.update(actor, fb)) {
             resp.sendError(HttpServletResponse.SC_FORBIDDEN);
             return;
         }
 
         resp.sendRedirect(req.getContextPath() + "/feedback/list");
+
     }
 }

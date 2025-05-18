@@ -29,5 +29,6 @@ public class AnonymousFeedback extends Feedback{
     @Override
     public String displayHeader() {
         return "Anonymous  —  " + getSubject();
+
     }
 }

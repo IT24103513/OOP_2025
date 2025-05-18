@@ -9,6 +9,7 @@ import org.parking.models.Slots.ParkingSlot;
 import org.parking.models.Slots.SlotStatus;
 import org.parking.repositories.BookingRepository;
 
+
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class BookingService {
 
     //private final BookingDAO dao = new BookingDAO();
     private final BookingRepository dao = new BookingDAO();
+
     private final ParkingSlotService slotSvc = new ParkingSlotService();
     private static final AtomicLong SEQ = new AtomicLong(initSeq());        // simple id generator
 

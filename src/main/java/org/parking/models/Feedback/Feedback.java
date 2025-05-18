@@ -6,7 +6,6 @@ import java.util.UUID;
 
 public abstract class Feedback implements Serializable {
 
-
     private String id;
     private LocalDateTime createdAt;
     private LocalDateTime lastUpdated;
@@ -43,6 +42,7 @@ public abstract class Feedback implements Serializable {
         this.subject     = subject;
         this.content     = content;
         this.status      = status;
+
     }
 
     /* ---------- Getters / Setters ---------- */
@@ -51,6 +51,7 @@ public abstract class Feedback implements Serializable {
     public LocalDateTime getLastUpdated() { return lastUpdated; }
 
     public String getSubject() { return subject; }
+
     public void setSubject(String subject) { this.subject = subject; touch(); }
 
     public String getContent() { return content; }
@@ -63,6 +64,7 @@ public abstract class Feedback implements Serializable {
 
     /** Subclasses implement how to display header text */
     public abstract String displayHeader();
+
 
     public enum Status { OPEN, IN_PROGRESS, CLOSED }
 }

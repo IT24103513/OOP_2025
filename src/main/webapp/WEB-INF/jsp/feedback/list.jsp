@@ -25,6 +25,7 @@
   <!-- 3) Blurred-bg + frosted-glass + slide-up -->
   <link
     href="${pageContext.request.contextPath}/assets/css/feedback.css?v=1"
+
     rel="stylesheet"
   >
 </head>
@@ -35,6 +36,7 @@
 
   <!-- NAVBAR -->
   <%@ include file="/WEB-INF/navbar.jsp" %>
+
 
   <!-- CONTENT -->
   <div class="container">
@@ -82,6 +84,7 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#viewFeedbackModal"
                                   >View</button>
+
 
 
                   <button
@@ -149,6 +152,7 @@
         </div>
       </div>
     </div>
+
 
   <!-- Modals -->
   <div class="modal fade" id="addFeedbackModal" tabindex="-1" aria-hidden="true">
@@ -262,7 +266,6 @@
   </div>
 
 
-
   <!-- Bootstrap JS + edit-handler -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -294,6 +297,7 @@
         });
       });
     </script>
+
 
 
 </body>
