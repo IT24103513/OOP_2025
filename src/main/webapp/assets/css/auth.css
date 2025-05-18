@@ -1,0 +1,50 @@
+/* full‑screen photo with dim overlay so content pops */
+body{
+    margin:0;
+    min-height:100vh;
+    background:url("../img/parkingNight2.jpg") center/cover fixed;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Inter',sans-serif;
+}
+body::after{                /* dark violet overlay */
+    content:"";
+    position:fixed;
+    inset:0;
+    background:#0000000b;
+    backdrop-filter:blur(2px);
+    z-index:-1;
+}
+
+/* the translucent glass card */
+.card-glass{
+    background:#161b22dd;               /* translucent */
+    border:1px solid #30363d;
+    border-radius:1rem;
+    box-shadow:0 8px 24px rgba(0,0,0,.8);
+    backdrop-filter:blur(6px);
+    width:420px;
+    animation:fadeUp .8s ease forwards;
+    opacity:0;transform:translateY(20px);
+}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+
+.brand{font-weight:700;color:#0d6efd;}
+.brand::before{content:"🅿️";margin-right:.3rem}
+
+.btn-neon{
+    position:relative;color:#fff;background:#0d6efd;border:none;
+}
+.btn-neon::before{
+    content:"";position:absolute;inset:0;padding:2px;border-radius:8px;
+    background:linear-gradient(45deg,#0d6efd,#8e2de2,#f093fb);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;z-index:-1;
+    animation:neon 3s linear infinite;
+}
+@keyframes neon{to{background-position:200% 0}}
+
+.footer{font-size:.85rem;color:#8b949e}
+a{color:#58a6ff;text-decoration:none}
+a:hover{text-decoration:underline}

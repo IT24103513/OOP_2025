@@ -1,0 +1,52 @@
+/* users.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+/* Dark, neon-accent “parking lot” vibe */
+body {
+  background: #0d1117;
+  color: #c9d1d9;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+/* Page title */
+h3 {
+  color: #c9d1d9;
+}
+
+/* Table (dark + striped) */
+.table-dark {
+  color: #c9d1d9;
+}
+.table-dark thead th {
+  background-color: #161b22;
+  border-color: #30363d;
+}
+.table-dark tbody tr:nth-of-type(odd) > * {
+  background-color: #161b22;
+}
+.table-dark tbody tr:nth-of-type(even) > * {
+  background-color: #0d1117;
+}
+.table-dark td,
+.table-dark th {
+  border-color: #30363d;
+}
+
+/* Buttons */
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+.btn-danger:hover {
+  background-color: #bb2d3b;
+  border-color: #b02a37;
+}
