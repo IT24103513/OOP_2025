@@ -5,6 +5,8 @@ import org.parking.models.Payment.CardPayment;
 import org.parking.models.Payment.CashPayment;
 import org.parking.models.Payment.Payment;
 import org.parking.models.Payment.PaymentStatus;
+import org.parking.repositories.PaymentRepository;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -13,7 +15,9 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class PaymentService {
 
-    private final PaymentDAO dao = new PaymentDAO();
+    //private final PaymentDAO dao = new PaymentDAO();
+    private final PaymentRepository dao = new PaymentDAO();
+
     private static final AtomicLong SEQ = new AtomicLong();
 
     /* initiatePayment() – CREATE */

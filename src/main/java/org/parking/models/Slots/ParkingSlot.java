@@ -35,8 +35,8 @@ public abstract class ParkingSlot implements Serializable {
         this.status = s;
     }
 
-    /* POLYMORPHIC – each subclass prices differently */
+    // POLYMORPHIC
     public abstract double getChargePerHour();
 
-    
+
 }

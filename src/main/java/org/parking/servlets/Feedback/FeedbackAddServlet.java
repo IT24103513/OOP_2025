@@ -31,6 +31,7 @@ public class FeedbackAddServlet extends HttpServlet {
                 req.getParameter("content"),
                 anonymous);
 
-        resp.sendRedirect(req.getContextPath() + "/feedback/list.jsp");
+        resp.sendRedirect(req.getContextPath() + "/feedback/list");
+
     }
 }

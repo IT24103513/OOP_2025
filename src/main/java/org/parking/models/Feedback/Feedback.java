@@ -6,20 +6,43 @@ import java.util.UUID;
 
 public abstract class Feedback implements Serializable {
 
-
-    private final String id = UUID.randomUUID().toString();
-    private final LocalDateTime createdAt = LocalDateTime.now();
+    private String id;
+    private LocalDateTime createdAt;
+    private LocalDateTime lastUpdated;
 
     private String subject;
-    private String content;           // encapsulated
-    private Status status = Status.OPEN;
-    private LocalDateTime lastUpdated = createdAt;
+    private String content;
+    private Status status;
 
-    protected Feedback() {}          // for deserialisation
-
+    /**
+     * Constructor for new feedbacks
+     */
     protected Feedback(String subject, String content) {
-        this.subject = subject;
-        this.content = content;
+        this.id          = UUID.randomUUID().toString();
+        this.createdAt   = LocalDateTime.now();
+        this.lastUpdated = this.createdAt;
+        this.subject     = subject;
+        this.content     = content;
+        this.status      = Status.OPEN;
+    }
+
+    /**
+     * Constructor for hydrating from persistence (CSV, DB, etc.)
+     */
+    protected Feedback(String id,
+                       LocalDateTime createdAt,
+                       LocalDateTime lastUpdated,
+                       String subject,
+                       String content,
+                       Status status)
+    {
+        this.id          = id;
+        this.createdAt   = createdAt;
+        this.lastUpdated = lastUpdated;
+        this.subject     = subject;
+        this.content     = content;
+        this.status      = status;
+
     }
 
     /* ---------- Getters / Setters ---------- */
@@ -28,25 +51,20 @@ public abstract class Feedback implements Serializable {
     public LocalDateTime getLastUpdated() { return lastUpdated; }
 
     public String getSubject() { return subject; }
-    public void setSubject(String subject) {
-        this.subject = subject; touch();
-    }
+
+    public void setSubject(String subject) { this.subject = subject; touch(); }
 
     public String getContent() { return content; }
-    public void setContent(String content) {
-        this.content = content; touch();
-    }
+    public void setContent(String content) { this.content = content; touch(); }
 
     public Status getStatus() { return status; }
-    public void setStatus(Status status) {
-        this.status = status; touch();
-    }
+    public void setStatus(Status status) { this.status = status; touch(); }
 
     private void touch() { this.lastUpdated = LocalDateTime.now(); }
 
-    /* ------------ Polymorphic hook ------------ */
-    public abstract String displayHeader();   // overriden below
+    /** Subclasses implement how to display header text */
+    public abstract String displayHeader();
 
-    /* --------- Extra enum --------- */
+
     public enum Status { OPEN, IN_PROGRESS, CLOSED }
 }

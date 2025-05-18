@@ -16,32 +16,32 @@ public class FeedbackEditServlet extends HttpServlet {
 
     private final FeedbackService service = new FeedbackService();
 
-//    @Override protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-//            throws ServletException, IOException {
-//
-//        User actor = (User) req.getSession().getAttribute("user");
-//        String id   = req.getParameter("id");
-//
-//        var opt = service.listAll().stream()   // quick lookup
-//                .filter(f -> f.getId().equals(id))
-//                .findFirst();
-//
-//        if (opt.isEmpty() || !service.update(actor, opt.get())) {   // permission check
-//            resp.sendError(403);
-//            return;
-//        }
-//
-//        req.setAttribute("fb", opt.get());
-//        req.getRequestDispatcher("/WEB-INF/jsp/feedback/edit.jsp")
-//                .forward(req, resp);
-//    }
+    @Override protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        User actor = (User) req.getSession().getAttribute("user");
+        String id   = req.getParameter("id");
+
+        var opt = service.listAll().stream()   // quick lookup
+                .filter(f -> f.getId().equals(id))
+                .findFirst();
+
+        if (opt.isEmpty() || !service.update(actor, opt.get())) {   // permission check
+            resp.sendError(403);
+            return;
+        }
+
+        req.setAttribute("fb", opt.get());
+        req.getRequestDispatcher("/WEB-INF/jsp/feedback/edit.jsp")
+                .forward(req, resp);
+    }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-
         User actor = (User) req.getSession().getAttribute("user");
-        String id  = req.getParameter("id");
+        String id = req.getParameter("id");
 
         var opt = service.listAll().stream()
                 .filter(f -> f.getId().equals(id))
@@ -55,15 +55,17 @@ public class FeedbackEditServlet extends HttpServlet {
         fb.setSubject(req.getParameter("subject"));
         fb.setContent(req.getParameter("content"));
 
-        // admin can close tickets
-        if (actor != null && actor.isAdmin() && req.getParameter("status") != null)
+        if (actor != null && actor.isAdmin() && req.getParameter("status") != null) {
             fb.setStatus(Feedback.Status.valueOf(req.getParameter("status")));
+        }
+
 
         if (!service.update(actor, fb)) {
             resp.sendError(HttpServletResponse.SC_FORBIDDEN);
             return;
         }
 
-        resp.sendRedirect(req.getContextPath() + "/feedback");
+        resp.sendRedirect(req.getContextPath() + "/feedback/list");
+
     }
 }
