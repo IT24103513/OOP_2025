@@ -1,0 +1,158 @@
+/* fill the viewport */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: #c9d1d9;
+}
+
+/* the full-screen blurred bg */
+.bg-blur {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('../img/nightCar2.jpg') no-repeat center center/cover;
+  background-size: cover;
+  filter: blur(8px) brightness(60%);
+  z-index: -1;
+}
+
+/* stack content above the BG */
+body {
+  position: relative;
+  background: transparent;
+}
+
+/* slide-up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* frosted-glass panels + slide-up */
+.navbar,
+.card-slab {
+  background: rgba(22, 27, 34, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* apply slide-up to every card */
+.card-slab {
+  border-radius: 1rem;
+  box-shadow: 0 8px 14px rgba(0, 0, 0, .6);
+
+  /* start off-screen & invisible */
+  opacity: 0;
+  transform: translateY(30px);
+
+  /* animate into place */
+  animation: slideUp 0.6s ease-out forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+/* brand icon */
+.brand::before {
+  content: "🅿️";
+  margin-right: .35rem;
+}
+
+/* neon-accent button (if you re-use it) */
+.btn-neon {
+  position: relative;
+  color: #fff;
+  border: none;
+  background: #0d6efd;
+  z-index: 0;
+}
+.btn-neon:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #0d6efd, #8e2de2, #f093fb);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  z-index: -1;
+  animation: move 3s linear infinite;
+}
+
+
+/* DARK MODAL THEME */
+.modal-backdrop.show {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+}
+
+.modal-content {
+  background: rgba(22, 27, 34, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #c9d1d9;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+  color: #c9d1d9;
+}
+
+.modal-header .modal-title {
+  font-weight: 500;
+}
+
+.modal-header .btn-close {
+  filter: invert(1) !important;
+}
+
+.modal-body p,
+.modal-body label,
+.modal-body .form-check-label {
+  color: #c9d1d9 !important;
+}
+
+/* Inputs, selects, radios */
+.form-control,
+.form-select {
+  background-color: #0d1117;
+  border-color: #30363d;
+  color: #c9d1d9;
+}
+.form-control::placeholder {
+  color: rgba(201,209,217,0.6);
+}
+
+.form-check-input {
+  background-color: #161b22;
+  border-color: #30363d;
+}
+.form-check-input:checked {
+  background-color: #198754;
+  border-color: #198754;
+}
+
+/* Buttons in footer */
+.modal-footer .btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+.modal-footer .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+@keyframes move {
+  to { background-position: 200% 0; }
+}
+
+
+
+
+
